@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+.env.*
+api.txt
+*.txt
+.DS_Store
