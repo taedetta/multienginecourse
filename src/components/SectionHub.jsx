@@ -62,7 +62,7 @@ export default function SectionHub({ section, content, onSelectActivity }) {
             style={{ '--accent': section.color }}
           >
             <span className="activity-card-icon">
-              <ActivityIcon id={act.id} />
+              <ActivityIcon id={act.id} sectionId={section.id} />
             </span>
             <h3>{act.name}</h3>
             <p>{act.desc}</p>
