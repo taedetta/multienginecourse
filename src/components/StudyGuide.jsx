@@ -40,8 +40,11 @@ export default function StudyGuide({ sectionId, onBack }) {
       {guide.showTable && (
         <div className="study-table-section">
           <h4>VMC Factors Table</h4>
-          <p className="match-instruction">Click any row to expand full control and performance notes.</p>
-          <VmcTable compact />
+          <p className="match-instruction">
+            Study the complete table below (matches your course PDF). On mobile, tap a row to expand notes.
+            Red highlights mark key exam phrases.
+          </p>
+          <VmcTable compact={false} showReferenceImage />
         </div>
       )}
 

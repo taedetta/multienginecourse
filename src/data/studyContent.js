@@ -6,9 +6,10 @@ export const vmcTableRows = [
     performance: 'Decreases',
     controlNotes:
       'More forward CG creates a longer arm between CG & rudder, which equals more leverage, making rudder more effective. So less rudder is needed to counter asymmetric turning.',
+    controlHighlight: 'So less rudder is needed to counter asymmetric turning.',
     performanceNotes:
       'Forward CG requires more downward force on the tail to keep AC level, which adds to the overall vertical downward force, therefore decreasing lift (= decreased performance).',
-    rowClass: 'vmc-row-blue',
+    rowClass: 'vmc-row-white',
   },
   {
     factor: 'Bank Angle (3 to 5°)',
@@ -18,7 +19,8 @@ export const vmcTableRows = [
     controlNotes:
       'Banking toward operating engine turns AC in same direction as required rudder input — so banking results in less rudder input needed.',
     performanceNotes:
-      '3–5° bank reduces sideslip, which reduces drag and increases performance. No bank would cause more drag, and over-banking (> 5°) will cause loss of VLC needed to offset weight (decreasing performance).',
+      '3-5° bank reduces sideslip, which reduces drag and increases performance. No bank would cause more drag, and over-banking (> 5°), will cause loss of VLC needed to offset weight (decreasing performance).',
+    performanceHighlight: '3-5° bank reduces sideslip, which reduces drag and increases performance.',
     rowClass: 'vmc-row-blue',
   },
   {

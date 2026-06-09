@@ -936,6 +936,32 @@
   color: #15803d !important;
 }
 
+.vmc-bold {
+  font-weight: 700;
+}
+
+.vmc-highlight {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.vmc-table-section-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.vmc-table-toolbar {
+  margin-bottom: 0.75rem;
+}
+
+.vmc-reference-img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  background: white;
+}
+
 .vmc-factor {
   font-weight: 600;
 }
