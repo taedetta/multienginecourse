@@ -9,7 +9,7 @@ export const vmcTableRows = [
     controlHighlight: 'So less rudder is needed to counter asymmetric turning.',
     performanceNotes:
       'Forward CG requires more downward force on the tail to keep AC level, which adds to the overall vertical downward force, therefore decreasing lift (= decreased performance).',
-    rowClass: 'vmc-row-white',
+    rowClass: 'vmc-row-blue',
   },
   {
     factor: 'Bank Angle (3 to 5°)',
