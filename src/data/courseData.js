@@ -3,7 +3,7 @@ export const sections = [
     id: 'aerodynamics',
     title: 'Single Engine Aerodynamics',
     subtitle: 'Critical Engine & PAST Factors',
-    icon: '✈️',
+    image: '/images/section-aerodynamics.png',
     color: '#1e40af',
     description:
       'Learn why the left engine is critical in conventional multi-engine aircraft and master the four aerodynamic factors: P-Factor, Accelerated Slipstream, Spiraling Slipstream, and Torque.',
@@ -12,7 +12,7 @@ export const sections = [
     id: 'vmc',
     title: 'VMC Table',
     subtitle: 'Control vs Performance Factors',
-    icon: '📊',
+    image: '/images/section-vmc.png',
     color: '#0f766e',
     description:
       'Understand how CG, bank angle, weight, power, density altitude, drag devices, and prop feathering affect VMC, control authority, and climb performance.',
@@ -21,7 +21,7 @@ export const sections = [
     id: 'oral',
     title: 'BE58 Oral Review',
     subtitle: 'Baron 58 Checkride Prep',
-    icon: '🎓',
+    image: '/images/section-oral.png',
     color: '#b45309',
     description:
       'Complete oral exam preparation covering engines, systems, airspeeds, fuel, landing gear, electrical, and emergency procedures for the Beechcraft Baron 58.',

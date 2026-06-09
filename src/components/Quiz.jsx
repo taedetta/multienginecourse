@@ -60,7 +60,7 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
           <h2>{title}</h2>
         </div>
         <div className="start-screen">
-          <div className="start-icon">{examMode ? '📝' : '❓'}</div>
+          <p className="start-label">{examMode ? 'Certification Exam' : 'Knowledge Check'}</p>
           <h3>{examMode ? 'Written Exam' : 'Quick Quiz'}</h3>
           <p>
             {examMode
@@ -87,7 +87,7 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
         <div className={`results-card ${passed ? 'pass' : 'fail'}`}>
           <div className="results-score">{pct}%</div>
           <p>{score} of {quizQuestions.length} correct</p>
-          <span className="results-badge">{passed ? '✓ Passed' : 'Keep Studying'}</span>
+          <span className="results-badge">{passed ? 'Passed' : 'Keep Studying'}</span>
         </div>
 
         {wrongCount > 0 ? (
@@ -138,7 +138,7 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
       {selected !== null && (
         <div className="feedback">
           <p className={selected === q.correct ? 'feedback-correct' : 'feedback-wrong'}>
-            {selected === q.correct ? '✓ Correct!' : '✗ Incorrect'}
+            {selected === q.correct ? 'Correct' : 'Incorrect'}
           </p>
           {selected !== q.correct && (
             <div className="feedback-answers">

@@ -57,8 +57,8 @@ export default function MemoryGame({ pairs, onBack }) {
 
       {won ? (
         <div className="win-screen">
-          <div className="win-icon">🎉</div>
-          <h3>All Matched!</h3>
+          <p className="start-label">Complete</p>
+          <h3>All Pairs Matched</h3>
           <p>You found all {pairs.length} pairs in {moves} moves.</p>
           <button className="btn-primary" onClick={onBack}>Done</button>
         </div>

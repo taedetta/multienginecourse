@@ -6,6 +6,8 @@ import Quiz from './components/Quiz';
 import MemoryGame from './components/MemoryGame';
 import RecallChallenge from './components/RecallChallenge';
 import StudyGuide from './components/StudyGuide';
+import SiteShell from './components/SiteShell';
+import { IconArrowRight } from './components/Icons';
 import './App.css';
 
 export default function App() {
@@ -40,80 +42,107 @@ export default function App() {
 
   if (view === 'activity' && section && content) {
     const back = backToSection;
-    switch (activity) {
-      case 'study':
-        return <StudyGuide sectionId={sectionId} onBack={back} />;
-      case 'flashcards':
-        return <FlashCards cards={content.flashcards} onBack={back} />;
-      case 'quiz':
-        return <Quiz questions={content.questions} title="Quick Quiz" onBack={back} />;
-      case 'exam':
-        return <Quiz questions={content.questions} title="Written Exam" onBack={back} examMode />;
-      case 'memory':
-        return <MemoryGame pairs={content.memoryPairs} onBack={back} />;
-      case 'recall':
-        return (
-          <RecallChallenge
-            questions={content.recallGame.questions}
-            title={content.recallGame.title}
-            onBack={back}
-          />
-        );
-      default:
-        break;
+    const activityView = (() => {
+      switch (activity) {
+        case 'study':
+          return <StudyGuide sectionId={sectionId} onBack={back} />;
+        case 'flashcards':
+          return <FlashCards cards={content.flashcards} onBack={back} />;
+        case 'quiz':
+          return <Quiz questions={content.questions} title="Quick Quiz" onBack={back} />;
+        case 'exam':
+          return <Quiz questions={content.questions} title="Written Exam" onBack={back} examMode />;
+        case 'memory':
+          return <MemoryGame pairs={content.memoryPairs} onBack={back} />;
+        case 'recall':
+          return (
+            <RecallChallenge
+              questions={content.recallGame.questions}
+              title={content.recallGame.title}
+              onBack={back}
+            />
+          );
+        default:
+          return null;
+      }
+    })();
+
+    if (activityView) {
+      return (
+        <SiteShell onHome={backHome} onBack={back} backLabel={section.title}>
+          <div className="page-content">{activityView}</div>
+        </SiteShell>
+      );
     }
   }
 
   if (view === 'section' && section && content) {
     return (
-      <div className="app">
-        <SectionHub
-          section={section}
-          content={content}
-          onSelectActivity={selectActivity}
-          onBack={backHome}
-        />
-      </div>
+      <SiteShell onHome={backHome} onBack={backHome} backLabel="All Modules">
+        <div className="page-content">
+          <SectionHub
+            section={section}
+            content={content}
+            onSelectActivity={selectActivity}
+            onBack={backHome}
+          />
+        </div>
+      </SiteShell>
     );
   }
 
   return (
-    <div className="app">
+    <SiteShell onHome={backHome}>
       <header className="hero">
-        <div className="hero-bg" />
+        <div className="hero-media">
+          <img src="/images/hero-baron58.png" alt="Beechcraft Baron 58 twin-engine aircraft" className="hero-image" />
+          <div className="hero-overlay" />
+        </div>
         <div className="hero-content">
-          <div className="hero-badge">Beechcraft Baron 58</div>
-          <h1>Multi-Engine Course</h1>
-          <p>
-            Interactive study platform with flash cards, quizzes, written exams,
-            memory games, and mini-games — built from your course materials.
+          <p className="hero-eyebrow">Beechcraft Baron 58 · Multi-Engine Rating</p>
+          <h1>Professional Flight Training Platform</h1>
+          <p className="hero-lead">
+            Structured checkride preparation built from your course materials — study guides,
+            comprehensive exams, flash cards, and performance drills for every oral topic.
           </p>
+          <div className="hero-stats">
+            <div><strong>3</strong><span>Training Modules</span></div>
+            <div><strong>80+</strong><span>Exam Questions</span></div>
+            <div><strong>48</strong><span>Flash Cards</span></div>
+          </div>
         </div>
       </header>
 
-      <main className="home-sections">
-        <h2>Course Sections</h2>
-        <div className="section-grid">
+      <section className="modules-section">
+        <div className="section-heading">
+          <h2>Training Modules</h2>
+          <p>Select a module to begin structured study and examination</p>
+        </div>
+        <div className="module-grid">
           {sections.map((s) => (
             <button
               key={s.id}
-              className="section-card"
+              type="button"
+              className="module-card"
               onClick={() => openSection(s.id)}
-              style={{ '--section-color': s.color }}
+              style={{ '--accent': s.color }}
             >
-              <span className="section-card-icon">{s.icon}</span>
-              <h3>{s.title}</h3>
-              <p className="section-card-sub">{s.subtitle}</p>
-              <p className="section-card-desc">{s.description}</p>
-              <span className="section-card-cta">Start Studying →</span>
+              <div className="module-card-media">
+                <img src={s.image} alt="" loading="lazy" />
+                <div className="module-card-shade" />
+              </div>
+              <div className="module-card-body">
+                <span className="module-card-tag">{s.subtitle}</span>
+                <h3>{s.title}</h3>
+                <p>{s.description}</p>
+                <span className="module-card-link">
+                  Enter Module <IconArrowRight />
+                </span>
+              </div>
             </button>
           ))}
         </div>
-      </main>
-
-      <footer className="footer">
-        <p>Baron 58 Multi-Engine Training · Study smart, fly safe</p>
-      </footer>
-    </div>
+      </section>
+    </SiteShell>
   );
 }

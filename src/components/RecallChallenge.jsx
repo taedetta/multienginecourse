@@ -62,7 +62,7 @@ export default function RecallChallenge({ questions, title, onBack }) {
         <div className={`results-card ${pct >= 80 ? 'pass' : 'fail'}`}>
           <div className="results-score">{pct}%</div>
           <p>{score} of {shuffled.length} recalled correctly</p>
-          <span className="results-badge">{pct >= 80 ? '✓ Solid recall' : 'Keep practicing'}</span>
+          <span className="results-badge">{pct >= 80 ? 'Solid recall' : 'Keep practicing'}</span>
         </div>
 
         {wrongCount > 0 ? (
@@ -110,7 +110,7 @@ export default function RecallChallenge({ questions, title, onBack }) {
       {selected && (
         <div className="feedback">
           <p className={selected === current.answer ? 'feedback-correct' : 'feedback-wrong'}>
-            {selected === current.answer ? '✓ Correct!' : '✗ Incorrect'}
+            {selected === current.answer ? 'Correct' : 'Incorrect'}
           </p>
           {selected !== current.answer && (
             <div className="feedback-answers">
