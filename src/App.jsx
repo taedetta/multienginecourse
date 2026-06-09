@@ -4,9 +4,7 @@ import SectionHub from './components/SectionHub';
 import FlashCards from './components/FlashCards';
 import Quiz from './components/Quiz';
 import MemoryGame from './components/MemoryGame';
-import MatchGame from './components/MatchGame';
-import OrderGame from './components/OrderGame';
-import AirspeedGame from './components/AirspeedGame';
+import RecallChallenge from './components/RecallChallenge';
 import './App.css';
 
 export default function App() {
@@ -50,28 +48,11 @@ export default function App() {
         return <Quiz questions={content.questions} title="Written Exam" onBack={back} examMode />;
       case 'memory':
         return <MemoryGame pairs={content.memoryPairs} onBack={back} />;
-      case 'order':
+      case 'recall':
         return (
-          <OrderGame
-            items={content.orderGame.items}
-            title={content.orderGame.title}
-            hint={content.orderGame.hint}
-            onBack={back}
-          />
-        );
-      case 'match':
-        return (
-          <MatchGame
-            pairs={content.matchGame.pairs}
-            title={content.matchGame.title}
-            onBack={back}
-          />
-        );
-      case 'airspeed':
-        return (
-          <AirspeedGame
-            pairs={content.airspeedGame.pairs}
-            title={content.airspeedGame.title}
+          <RecallChallenge
+            questions={content.recallGame.questions}
+            title={content.recallGame.title}
             onBack={back}
           />
         );

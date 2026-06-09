@@ -6,9 +6,9 @@ const activities = [
 ];
 
 const sectionExtras = {
-  aerodynamics: [{ id: 'order', name: 'PAST Order Game', icon: '🔢', desc: 'Put the four critical engine factors in correct order' }],
-  vmc: [{ id: 'match', name: 'VMC Factor Match', icon: '🔗', desc: 'Match each factor to its VMC/control effect' }],
-  oral: [{ id: 'airspeed', name: 'Airspeed Challenge', icon: '⏱️', desc: 'Match Baron 58 airspeed names to their values' }],
+  aerodynamics: [{ id: 'recall', name: 'PAST Recall Challenge', icon: '🎯', desc: 'Quiz yourself on each PAST factor — names, effects, and failure scenarios' }],
+  vmc: [{ id: 'recall', name: 'VMC Recall Challenge', icon: '🎯', desc: 'Recall how each factor affects VMC, control, and performance' }],
+  oral: [{ id: 'recall', name: 'Airspeed Recall Challenge', icon: '🎯', desc: 'Drill Baron 58 airspeeds until you know every value cold' }],
 };
 
 export default function SectionHub({ section, content, onSelectActivity, onBack }) {

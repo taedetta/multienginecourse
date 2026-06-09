@@ -680,53 +680,208 @@ const oralFlashcards = [
   { front: 'Accelerate-Stop', back: 'Distance to accelerate to Vr, idle, full stop (POH chart).' },
 ];
 
+const pastRecallQuestions = [
+  {
+    prompt: 'What does the "P" in PAST stand for?',
+    answer: 'P-Factor',
+    explanation: 'P = P-Factor — asymmetric thrust from the descending vs ascending propeller blade.',
+  },
+  {
+    prompt: 'What does the "A" in PAST stand for?',
+    answer: 'Accelerated Slipstream',
+    explanation: 'A = Accelerated Slipstream — extra airflow over the wing from the operating engine.',
+  },
+  {
+    prompt: 'What does the "S" in PAST stand for?',
+    answer: 'Spiraling Slipstream',
+    explanation: 'S = Spiraling Slipstream — corkscrew airflow behind the prop that affects the rudder.',
+  },
+  {
+    prompt: 'What does the "T" in PAST stand for?',
+    answer: 'Torque',
+    explanation: 'T = Torque — roll tendency opposite to the direction of propeller rotation.',
+  },
+  {
+    prompt: 'The descending propeller blade produces more thrust than the ascending blade. This is called:',
+    answer: 'P-Factor',
+    explanation: 'P-Factor creates asymmetric thrust and yaw, especially when the operating engine is farther from centerline.',
+  },
+  {
+    prompt: 'Airflow from the operating engine forced over the wing creates extra lift and rolling moment. This is:',
+    answer: 'Accelerated Slipstream',
+    explanation: 'The right engine\'s accelerated slipstream creates a longer arm and more rolling moment when the left engine fails.',
+  },
+  {
+    prompt: 'Spiraling air from the left propeller hits the rudder and makes it more effective. This factor is:',
+    answer: 'Spiraling Slipstream',
+    explanation: 'When the left engine is operating, its spiraling slipstream increases rudder effectiveness.',
+  },
+  {
+    prompt: 'The opposite reaction to clockwise prop rotation that tries to roll the aircraft is:',
+    answer: 'Torque',
+    explanation: 'Torque rolls the aircraft opposite prop rotation. With left engine failed, torque rolls left.',
+  },
+  {
+    prompt: 'If the LEFT engine fails, P-factor from the RIGHT engine creates:',
+    answer: 'Greater yaw (farther from longitudinal axis)',
+    explanation: 'Operating engine thrust acts farther from centerline, increasing the yawing moment.',
+  },
+  {
+    prompt: 'If the left engine fails, spiraling slipstream from the right engine:',
+    answer: 'Spirals away from the rudder',
+    explanation: 'Right engine slipstream misses the rudder, reducing rudder effectiveness.',
+  },
+  {
+    prompt: 'P-Factor primarily affects aircraft:',
+    answer: 'Yaw',
+    explanation: 'Asymmetric thrust yaws the aircraft toward the failed engine side.',
+  },
+  {
+    prompt: 'Accelerated slipstream primarily affects aircraft:',
+    answer: 'Roll and pitch',
+    explanation: 'Extra lift from operating engine airflow creates rolling and pitching moments.',
+  },
+  {
+    prompt: 'Torque primarily affects aircraft:',
+    answer: 'Roll',
+    explanation: 'Torque is a rolling moment opposite propeller rotation direction.',
+  },
+  {
+    prompt: 'Spiraling slipstream flows from high pressure to low pressure, which means:',
+    answer: 'Left to right (in standard diagrams)',
+    explanation: 'Descending blade = low pressure; ascending blade = high pressure, pushing slipstream right.',
+  },
+  {
+    prompt: 'Which PAST factor makes the rudder MORE effective when the left engine is running?',
+    answer: 'Spiraling Slipstream',
+    explanation: 'Left engine spiraling air hits the rudder directly, increasing its effectiveness.',
+  },
+  {
+    prompt: 'Aircraft with counter-rotating props:',
+    answer: 'Have no critical engine',
+    explanation: 'Either engine failure has the same aerodynamic effect — no critical engine.',
+  },
+];
+
+const vmcRecallQuestions = [
+  {
+    prompt: 'Forward CG effect on VMC:',
+    answer: 'Lowers VMC, increases control',
+    explanation: 'Longer arm between CG and rudder = more leverage, less rudder needed. But decreases climb performance.',
+  },
+  {
+    prompt: 'Forward CG effect on climb performance:',
+    answer: 'Decreases performance',
+    explanation: 'More tail-down force required, reducing overall lift.',
+  },
+  {
+    prompt: 'Banking 3–5° toward the operating engine:',
+    answer: 'Lowers VMC, less rudder needed',
+    explanation: 'Bank turns aircraft same direction as rudder input, reducing required rudder.',
+  },
+  {
+    prompt: 'Proper 3–5° bank effect on performance:',
+    answer: 'Increases performance (less sideslip/drag)',
+    explanation: 'Reduces sideslip. No bank = more drag. Over-bank >5° = worse performance.',
+  },
+  {
+    prompt: 'Increased weight while banking effect on VMC:',
+    answer: 'Lowers VMC',
+    explanation: 'More vertical lift component works with rudder, requiring less rudder input.',
+  },
+  {
+    prompt: 'Lower power setting effect on VMC:',
+    answer: 'Lowers VMC',
+    explanation: 'Less asymmetric turning tendency means less rudder required.',
+  },
+  {
+    prompt: 'Lower power setting effect on climb:',
+    answer: 'Decreases climb performance',
+    explanation: 'Less power = worse rate of climb.',
+  },
+  {
+    prompt: 'Higher density altitude effect on VMC:',
+    answer: 'Lowers VMC, increases control',
+    explanation: 'Less air over wing/prop reduces turning tendency; rudder stays effective.',
+  },
+  {
+    prompt: 'Higher density altitude effect on performance:',
+    answer: 'Decreases performance',
+    explanation: 'Less dense air = less engine power effect, worse climb.',
+  },
+  {
+    prompt: 'Extended gear and flaps effect on VMC:',
+    answer: 'Lowers VMC',
+    explanation: 'Interrupt prop slipstream, reducing asymmetric turning tendency.',
+  },
+  {
+    prompt: 'Extended gear and flaps effect on climb:',
+    answer: 'Decreases climb performance',
+    explanation: 'Additional drag reduces rate of climb.',
+  },
+  {
+    prompt: 'Feathered prop effect on VMC:',
+    answer: 'Lowers VMC',
+    explanation: 'Reduces yaw toward the dead engine.',
+  },
+  {
+    prompt: 'Feathered prop effect on performance:',
+    answer: 'Increases performance (less drag)',
+    explanation: 'Less drag from dead engine improves climb capability.',
+  },
+  {
+    prompt: 'Over-banking beyond 5° during single-engine flight:',
+    answer: 'Decreases performance',
+    explanation: 'Loses vertical lift component needed to support weight.',
+  },
+  {
+    prompt: 'VMC is defined as:',
+    answer: 'Ratio of available engine power vs rudder power',
+    explanation: 'Minimum speed where you can maintain directional control with critical engine inop.',
+  },
+];
+
+const airspeedRecallQuestions = [
+  { prompt: 'Vso — dirty stall speed (flaps/gear extended):', answer: '65 kts', explanation: 'Stall speed in landing configuration.' },
+  { prompt: 'Vs1 — clean stall speed:', answer: '78 kts', explanation: 'Stall speed flaps and gear retracted.' },
+  { prompt: 'VMC — minimum control speed (red line):', answer: '84 kts', explanation: 'Minimum speed for directional control with one engine inop.' },
+  { prompt: 'Vr — rotation speed:', answer: '85 kts', explanation: 'Speed to begin rotation on takeoff.' },
+  { prompt: 'Vsse — minimum intentional one-engine operation (yellow line):', answer: '88 kts', explanation: 'Do not intentionally fly below this on one engine.' },
+  { prompt: 'Vx — best angle of climb (both engines):', answer: '92 kts', explanation: 'Best angle of climb, minimal intentional 1-engine ops reference.' },
+  { prompt: 'Vxse — best angle of climb (single engine):', answer: '95 kts', explanation: 'Best angle of climb with one engine operating.' },
+  { prompt: 'Vyse — best rate of climb single engine (blue line):', answer: '101 kts', explanation: 'Fly this speed after engine failure for best climb rate.' },
+  { prompt: 'Vy — best rate of climb (both engines):', answer: '105 kts', explanation: 'Best rate of climb with both engines.' },
+  { prompt: 'Best glide speed:', answer: '115 kts', explanation: 'Maximum glide distance speed.' },
+  { prompt: 'Vfe — max flap extended speed:', answer: '122 kts', explanation: 'White arc top; flap range 69–122 kts.' },
+  { prompt: 'Vle — max gear extended speed:', answer: '152 kts', explanation: 'Do not exceed with gear down.' },
+];
+
 export const sectionContent = {
   aerodynamics: {
     questions: aerodynamicsQuestions,
     flashcards: aerodynamicsFlashcards,
     memoryPairs: aerodynamicsFlashcards.slice(0, 8),
-    orderGame: {
-      title: 'Order the PAST Factors',
-      items: ['P-Factor', 'Accelerated Slipstream', 'Spiraling Slipstream', 'Torque'],
-      hint: 'Remember: PAST — the four critical engine factors in order.',
+    recallGame: {
+      title: 'PAST Recall Challenge',
+      questions: pastRecallQuestions,
     },
   },
   vmc: {
     questions: vmcQuestions,
     flashcards: vmcFlashcards,
     memoryPairs: vmcFlashcards.slice(0, 8),
-    matchGame: {
-      title: 'VMC Factor Effects',
-      pairs: [
-        { term: 'Forward CG', effect: 'Lowers VMC, increases control' },
-        { term: '3-5° Bank', effect: 'Lowers VMC, less rudder needed' },
-        { term: 'Lower Power', effect: 'Lowers VMC, less climb' },
-        { term: 'High DA', effect: 'Lowers VMC, less performance' },
-        { term: 'Gear/Flaps Out', effect: 'Lowers VMC, more drag' },
-        { term: 'Feathered Prop', effect: 'Lowers VMC, less drag' },
-      ],
+    recallGame: {
+      title: 'VMC Recall Challenge',
+      questions: vmcRecallQuestions,
     },
   },
   oral: {
     questions: oralQuestions,
     flashcards: oralFlashcards,
     memoryPairs: oralFlashcards.slice(0, 10),
-    airspeedGame: {
-      title: 'Baron 58 Airspeeds',
-      pairs: [
-        { term: 'Vso', speed: '65 kts' },
-        { term: 'Vs1', speed: '78 kts' },
-        { term: 'VMC', speed: '84 kts' },
-        { term: 'Vr', speed: '85 kts' },
-        { term: 'Vsse', speed: '88 kts' },
-        { term: 'Vx', speed: '92 kts' },
-        { term: 'Vxse', speed: '95 kts' },
-        { term: 'Vyse', speed: '101 kts' },
-        { term: 'Vy', speed: '105 kts' },
-        { term: 'Best Glide', speed: '115 kts' },
-        { term: 'Vfe', speed: '122 kts' },
-        { term: 'Vle', speed: '152 kts' },
-      ],
+    recallGame: {
+      title: 'Airspeed Recall Challenge',
+      questions: airspeedRecallQuestions,
     },
   },
 };
