@@ -25,7 +25,7 @@ export default function FlashCards({ cards, onBack }) {
       <div className="progress-bar"><div className="progress-fill" style={{ width: `${progress}%` }} /></div>
 
       <div
-        className={`flashcard ${flipped ? 'flipped' : ''}`}
+        className={`flashcard ${flipped ? 'flipped' : ''} ${flipped ? 'flashcard-tall' : ''}`}
         onClick={() => setFlipped(!flipped)}
         role="button"
         tabIndex={0}
@@ -35,11 +35,15 @@ export default function FlashCards({ cards, onBack }) {
           <div className="flashcard-front">
             <span className="card-label">Term</span>
             <p>{card.front}</p>
-            <span className="tap-hint">Tap to flip</span>
+            <span className="tap-hint">Tap to flip for full explanation</span>
           </div>
           <div className="flashcard-back">
-            <span className="card-label">Definition</span>
-            <p>{card.back}</p>
+            <span className="card-label">Full Explanation</span>
+            <div className="flashcard-back-scroll">
+              {card.back.split('\n').map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>

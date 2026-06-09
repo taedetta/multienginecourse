@@ -39,13 +39,13 @@ const aerodynamicsQuestions = [
     ],
     correct: 1,
     explanation:
-      'The critical engine is the one whose failure would most adversely affect the performance or handling qualities of the aircraft.',
+      'The critical engine is the one whose failure would most adversely affect the performance or handling qualities of the aircraft. In conventional twins with clockwise-rotating props, this is the left engine due to all four PAST factors. Be able to explain WHY, not just memorize which engine.',
   },
   {
     question: 'What acronym helps remember the four critical engine factors?',
     choices: ['FAST', 'PAST', 'CAST', 'PATS'],
     correct: 1,
-    explanation: 'PAST = P-Factor, Accelerated Slipstream, Spiraling Slipstream, Torque.',
+    explanation: 'PAST = P-Factor (yaw), Accelerated Slipstream (roll/pitch), Spiraling Slipstream (yaw/rudder effectiveness), Torque (roll). You should be able to define each factor and explain what happens when the left engine fails.',
   },
   {
     question: 'In a conventional multi-engine airplane, which engine is typically critical?',
@@ -186,7 +186,7 @@ const vmcQuestions = [
       'Best rate of climb speed single engine',
     ],
     correct: 1,
-    explanation: 'VMC = ratio of available engine power vs available rudder power.',
+    explanation: 'VMC = ratio of available engine power vs available rudder power. On the Baron 58, published VMC is 84 kts (red line). Below this speed, you cannot maintain directional control with the critical engine inoperative. Study the full VMC table for all factors.',
   },
   {
     question: 'A forward CG generally:',
@@ -632,59 +632,171 @@ const oralQuestions = [
 ];
 
 const aerodynamicsFlashcards = [
-  { front: 'Critical Engine', back: 'Engine whose failure most adversely affects performance or handling.' },
-  { front: 'P — P-Factor', back: 'Descending blade produces more thrust; creates yaw, especially when operating engine is farther from centerline.' },
-  { front: 'A — Accelerated Slipstream', back: 'Operating engine airflow over wing creates extra lift and rolling moment.' },
-  { front: 'S — Spiraling Slipstream', back: 'Prop spiral airflow affects rudder effectiveness; left engine slipstream helps rudder.' },
-  { front: 'T — Torque', back: 'Opposite reaction to prop rotation; tries to roll aircraft opposite prop direction.' },
-  { front: 'Left Engine Critical?', back: 'Yes, in conventional twins with clockwise-rotating props (all four PAST factors).' },
-  { front: 'Counter-Rotating Props', back: 'No critical engine — either engine failure has same aerodynamic effect.' },
-  { front: 'P-Factor + Left Engine Failed', back: 'Right engine P-factor farther from longitudinal axis → greater yawing moment.' },
-  { front: 'Spiraling Slipstream Direction', back: 'High pressure to low pressure (left to right in standard diagrams).' },
-  { front: 'Torque + Left Engine Failed', back: 'Torque tries to roll aircraft to the left.' },
+  {
+    front: 'Critical Engine',
+    back: 'The engine whose failure would most adversely affect the performance or handling qualities of the aircraft.\n\nIn conventional twins with clockwise-rotating props (as viewed from the cockpit), the LEFT engine is critical because all four PAST factors combine to make its failure the worst-case scenario for control and performance.',
+  },
+  {
+    front: 'P — P-Factor',
+    back: 'The descending propeller blade produces more thrust than the ascending blade (higher angle of attack on the descending blade).\n\nIf the LEFT engine fails, P-factor from the RIGHT engine is farther from the longitudinal axis, creating a greater yawing moment toward the dead engine.\n\nPrimary effect: YAW. You must explain that asymmetric thrust creates the yawing force that rudder must counteract.',
+  },
+  {
+    front: 'A — Accelerated Slipstream',
+    back: 'Air being forced over the wing by the operating engine creates extra lift.\n\nWhen the left engine fails, airflow from the RIGHT engine creates more induced airflow over the wing and a longer moment arm, producing a greater rolling moment toward the live engine.\n\nPrimary effects: ROLL and PITCH. Be able to explain how the operating engine\'s slipstream affects lift distribution.',
+  },
+  {
+    front: 'S — Spiraling Slipstream',
+    back: 'The propeller creates a corkscrew (spiraling) stream of air behind it as it rotates through the air.\n\nLEFT engine operating: spiraling air hits the rudder, making it MORE effective.\nLEFT engine failed: RIGHT engine slipstream spirals AWAY from the rudder, making it LESS effective when needed most.\n\nFlow direction: High pressure → Low pressure (left to right). Descending blade = low pressure; ascending blade = high pressure.\n\nPrimary effect: YAW (rudder effectiveness).',
+  },
+  {
+    front: 'T — Torque',
+    back: 'Newton\'s third law: the clockwise rotation of the propeller creates an opposite (counter-clockwise) rolling reaction on the aircraft.\n\nTorque tries to roll the airplane opposite the propeller\'s direction of rotation.\n\nIf the left engine fails, torque from the right engine tries to roll the aircraft to the LEFT.\n\nPrimary effect: ROLL.',
+  },
+  {
+    front: 'Left Engine Critical?',
+    back: 'YES — in conventional multi-engine airplanes with both engines rotating clockwise.\n\nAll four PAST factors make the left engine critical:\n• P-Factor: right engine thrust farther from centerline\n• Accelerated slipstream: right engine creates longer rolling arm\n• Spiraling slipstream: left engine normally helps rudder; right engine misses rudder when left fails\n• Torque: rolls left when left engine fails',
+  },
+  {
+    front: 'Counter-Rotating Props',
+    back: 'Aircraft with counter-rotating propellers do NOT have a critical engine.\n\nLoss of either engine has the same aerodynamic effect because PAST factors are balanced — neither engine failure is worse than the other for control and performance.',
+  },
+  {
+    front: 'P-Factor + Left Engine Failed',
+    back: 'When the LEFT engine fails, the operating RIGHT engine\'s P-factor acts farther from the longitudinal axis of the aircraft.\n\nThis creates a GREATER yawing moment than if the right engine had failed (where left engine P-factor would be closer to centerline).\n\nThis is a key reason the left engine is the critical engine — explain the moment arm concept to your examiner.',
+  },
+  {
+    front: 'Spiraling Slipstream Direction',
+    back: 'Spiraling slipstream flows from HIGH pressure to LOW pressure (left to right in standard diagrams).\n\nDescending propeller blade: high angle of attack → LOW pressure airflow.\nAscending propeller blade: low angle of attack → HIGH pressure airflow.\n\nHigh pressure pushes the spiraling slipstream to the right, which is why the left engine\'s slipstream can hit the rudder but the right engine\'s slipstream misses it when the left engine is dead.',
+  },
+  {
+    front: 'Torque + Left Engine Failed',
+    back: 'With the left engine failed and the right engine at full power, torque from the clockwise-rotating right prop tries to roll the aircraft to the LEFT (opposite the prop rotation direction).\n\nThis combines with P-factor yaw and accelerated slipstream roll — all reasons you need proper technique (bank, ball, rudder) after engine failure.',
+  },
 ];
 
 const vmcFlashcards = [
-  { front: 'VMC Definition', back: 'Ratio of available engine power vs available rudder power.' },
-  { front: 'Forward CG → VMC', back: 'Lowers VMC (good). More rudder leverage. Decreases performance.' },
-  { front: 'Bank 3-5° → VMC', back: 'Lowers VMC. Less rudder needed. Increases performance (less sideslip).' },
-  { front: 'Increased Weight (banking)', back: 'Lowers VMC. More vertical lift helps rudder. Heavier = worse climb.' },
-  { front: 'Lower Power → VMC', back: 'Lowers VMC (less asymmetric yaw). Decreases climb performance.' },
-  { front: 'High Density Altitude', back: 'Lowers VMC. Less turning tendency; rudder still effective.' },
-  { front: 'Drag Devices Extended', back: 'Lowers VMC. Interrupts prop slipstream. Decreases climb.' },
-  { front: 'Feathered Prop', back: 'Lowers VMC. Less yaw toward dead engine. Increases performance (less drag).' },
-  { front: 'Over-Bank > 5°', back: 'Bad for performance — loses vertical lift component.' },
-  { front: 'No Bank', back: 'More sideslip and drag — worse performance.' },
+  {
+    front: 'VMC Definition',
+    back: 'VMC = Ratio of available engine power vs available rudder power.\n\nVMC is the minimum speed at which directional control can be maintained with the critical engine inoperative (Baron 58: 84 kts, red line).\n\nBelow VMC, rudder authority is insufficient to counteract asymmetric thrust from the operating engine. The manufacturer determines VMC under FAA-mandated conditions.',
+  },
+  {
+    front: 'Forward CG → VMC',
+    back: 'VMC: Lowers (Good) | Control: Increases | Performance: Decreases\n\nControl: More forward CG creates a longer arm between CG and rudder = more leverage = rudder more effective = less rudder needed to counter asymmetric turning.\n\nPerformance: Forward CG requires more downward tail force to stay level, adding to overall downward force and decreasing lift/rate of climb.',
+  },
+  {
+    front: 'Bank 3-5° → VMC',
+    back: 'VMC: Lowers (Good) | Control: Increases | Performance: Increases\n\nControl: Banking toward the operating engine turns the AC in the same direction as required rudder input, so less rudder is needed.\n\nPerformance: 3-5° bank reduces sideslip and drag. No bank = more drag. Over-bank >5° = loses vertical lift component needed to support weight.',
+  },
+  {
+    front: 'Increased Weight (banking)',
+    back: 'VMC: Lowers (Good) | Control: Increases | Performance: Decreases\n\nControl: More weight in a turn requires more lift. Increased vertical lift (VL) also increases horizontal lift (HL) working with rudder — less rudder input needed.\n\nPerformance: Lighter weight = better climb, but lighter weight can INCREASE VMC (trade-off).',
+  },
+  {
+    front: 'Lower Power → VMC',
+    back: 'VMC: Lowers (Good) | Control: Increases | Performance: Decreases\n\nControl: Lower power = less asymmetric turning tendency = less rudder required.\n\nPerformance: Lower power directly decreases rate of climb. During training/demo of VMC, power is reduced — but in a real engine failure you\'re at full power on the good engine.',
+  },
+  {
+    front: 'High Density Altitude',
+    back: 'VMC: Lowers (Good) | Control: Increases | Performance: Decreases\n\nControl: Less dense air = less airflow over wing/prop = less turning tendency, but rudder remains substantially effective. Higher DA also decreases adverse yaw.\n\nPerformance: Less dense air = less engine power effect = worse climb. More dense air acts like more power (needs more rudder).',
+  },
+  {
+    front: 'Drag Devices Extended',
+    back: 'VMC: Lowers (Good) | Control: Increases | Performance: Decreases\n\nControl: Gear and flaps interrupt the rearward-flowing prop slipstream, reducing asymmetric turning tendency.\n\nPerformance: Additional drag from gear/flaps decreases rate of climb.',
+  },
+  {
+    front: 'Feathered Prop',
+    back: 'VMC: Lowers (Good) | Control: Increases | Performance: Increases\n\nControl: Feathered prop reduces yaw toward the dead engine — the primary reason you identify, verify, and feather.\n\nPerformance: Feathered prop dramatically decreases drag, improving climb performance on the good engine.',
+  },
+  {
+    front: 'Over-Bank > 5°',
+    back: 'Hurts PERFORMANCE during single-engine flight.\n\nOver-banking beyond 5° causes loss of the vertical lift component (VLC) needed to offset weight, decreasing climb performance.\n\nProper technique: 3-5° bank toward the operating engine — not wings level, not excessive bank.',
+  },
+  {
+    front: 'No Bank (Wings Level)',
+    back: 'Causes more sideslip and drag — worse PERFORMANCE.\n\nWithout banking toward the operating engine, the aircraft flies with more sideslip, requiring more rudder and creating more drag.\n\nCorrect single-engine technique: bank 3-5° toward the good engine, ball centered, hold blue line (Vyse).',
+  },
 ];
 
 const oralFlashcards = [
-  { front: 'Engines', back: '2 × Continental IO-550-C, fuel injected, air cooled, 300 HP each.' },
-  { front: 'Max RPM / Starter', back: '2700 RPM max. 30 seconds max starter time.' },
-  { front: 'Fuel', back: '100LL or 100. 172 total / 166 usable (83 per side).' },
-  { front: 'Oil', back: '12 qts full, 9 min, 10-11 normal.' },
-  { front: 'Max Gross', back: '5500 lbs.' },
-  { front: 'VMC / Vso / Vs1', back: 'VMC 84, Vso 65, Vs1 78.' },
-  { front: 'Vy / Vyse / Vxse', back: 'Vy 105, Vyse 101 (blue), Vxse 95.' },
-  { front: 'Vfe / Vle / Vr', back: 'Vfe 122, Vle 152, Vr 85.' },
-  { front: 'Vsse / Best Glide', back: 'Vsse 88 (yellow). Best glide 115 kts.' },
-  { front: 'Service Ceilings', back: 'SE: ≤50 fpm climb. ME: ≤100 fpm climb.' },
-  { front: 'Prop System', back: '3-blade constant speed. Oil → low pitch. Springs → high pitch. Anti-feather locks.' },
-  { front: 'Electrical', back: '28V. Two 12V batteries series. Two 50A alternators. Dual regulators.' },
-  { front: 'Vacuum', back: 'Two engine-driven pumps as one system. Pop-out buttons indicate failure.' },
-  { front: 'Gear System', back: 'Electric motor. Manual crank behind co-pilot. NEVER electric + crank engaged.' },
-  { front: 'Gear Warning (3)', back: '≤12" MP, gear up on ground, full flaps gear not down.' },
-  { front: 'Cross-Feed', back: 'Level flight only. Dead engine off. Pump LOW. Good engine cross-feed.' },
-  { front: 'Engine Failure', back: 'Bank, ball, blue line. Mixture/props/throttles full. Identify, verify, feather.' },
-  { front: 'Manifold Pressure', back: 'Vacuum on intake stroke. Decreases ~1" per 1000 ft in climb.' },
-  { front: 'Avionics', back: 'GTN 650Xi nav/com. STEC autopilot.' },
-  { front: 'Accelerate-Stop', back: 'Distance to accelerate to Vr, idle, full stop (POH chart).' },
+  {
+    front: 'Engines',
+    back: '2 Continental IO-550-C engines, fuel injected, air cooled.\nIO = "I" fuel injection, "O" horizontally opposed.\n300 HP per engine. Max rated RPM: 2700. Max starter time: 30 seconds.',
+  },
+  {
+    front: 'Fuel System',
+    back: 'Type: 100LL (blue) or 100 (green).\nTotal: 172 gal | Usable: 166 gal (83 per side in mains).\nControls between seats: ON/OFF/Cross-feed.\nMechanical pump per engine; electrical aux pump HI/LOW/OFF.\nHI: starting or mech pump failure. LOW: pressure fluctuations/restart.',
+  },
+  {
+    front: 'Oil & Weight',
+    back: 'Oil: 12 qts full, 9 minimum, 10-11 normal.\nMax gross weight: 5500 lbs.\nEmpty weight: per POH — complete W&B for your aircraft.',
+  },
+  {
+    front: 'Airspeeds — Stall & Control',
+    back: 'Vso: 65 kts — dirty stall (flaps/gear)\nVs1: 78 kts — clean stall\nVMC: 84 kts — min control speed, one engine out (RED LINE)\nVsse: 88 kts — min intentional one-engine ops (YELLOW LINE)',
+  },
+  {
+    front: 'Airspeeds — Climb & Glide',
+    back: 'Vr: 85 kts — rotation\nVx: 92 kts — best angle climb (both engines)\nVxse: 95 kts — best angle climb (single engine)\nVyse: 101 kts — best rate climb SE (BLUE LINE)\nVy: 105 kts — best rate climb both engines\nBest glide: 115 kts',
+  },
+  {
+    front: 'Airspeeds — Limits',
+    back: 'Vfe: 122 kts — max flap extended (white arc 69-122)\nVle: 152 kts — max gear extended\nEmergency descent: 152 kts (practice at 135 kts)',
+  },
+  {
+    front: 'Service Ceilings & Takeoff Performance',
+    back: 'Single-engine service ceiling: will not climb > 50 fpm.\nMulti-engine service ceiling: will not climb > 100 fpm.\nAccelerate-stop: accel to Vr, idle, full stop (POH chart).\nAccelerate-go: accel to Vr, engine fail, feather, continue to 50\' AGL (POH chart).',
+  },
+  {
+    front: 'Propeller System',
+    back: '3-blade constant speed prop.\nSprings/counterweights → high pitch (less RPM, less drag).\nOil pressure → low pitch (more RPM, more thrust).\nAft levers in flight = feathered (less drag). Full forward on takeoff = max thrust.\nAnti-feathering lock pins prevent feathering from oil pressure loss on shutdown.',
+  },
+  {
+    front: 'Electrical System',
+    back: '28V system. Two 12V batteries in series → 24V to two busses.\nTwo belt-driven 50-amp alternators (one per engine).\nDual voltage regulators — one active, one backup.\nPowers: starters, lights, radios, avionics, heater, cowl flaps, gear.\nMagnetos provide spark once engines are running.',
+  },
+  {
+    front: 'Vacuum & Stall Warning',
+    back: 'Vacuum: 2 engine-driven suction pumps as one system. Either can fail; other continues. Pop-out red buttons on gauge identify failed side.\n\nStall warning: vane on LEFT wing leading edge, electric horn. Effective all attitudes/weights/speeds. Affected by icing.',
+  },
+  {
+    front: 'Landing Gear',
+    back: 'Electric motor, 2-position switch. Red=up, Green=down.\nMirror on left cowling (nose gear visual). Floor indicator under panel.\nManual crank behind co-pilot seat.\n\n⚠️ NEVER use electric gear with manual crank engaged.\n\nGear horn: ≤12" MP, gear up on ground, full flaps gear not down.',
+  },
+  {
+    front: 'Backup Gear Extension',
+    back: '1. LDG OR MOTOR circuit breaker — PULL\n2. Landing gear handle — DOWN\n3. Hand crank behind co-pilot seat, counterclockwise ~50 turns\n4. Check position lights/horn; verify LDG OR RELAY breaker engaged',
+  },
+  {
+    front: 'Cross-Feed Procedure',
+    back: 'Level flight ONLY.\n1. Inoperative engine selector → OFF\n2. Aux fuel pump on good engine → LOW\n3. Good engine selector → Cross-feed\n4. Fuel pump OFF or LOW as required\nLockout prevents both selectors in cross-feed or OFF at same time.',
+  },
+  {
+    front: 'Engine Failure — Memory Items',
+    back: 'Bank, ball, blue line.\nMixture/props/throttles — FULL FORWARD.\nFlaps/gear — UP.\nDead foot = dead engine.\nIdentify → Verify → Feather.\nMixture to lean on dead engine.\nSee emergency checklist for restart.',
+  },
+  {
+    front: 'VMC (Oral Definition)',
+    back: 'Minimum speed at which directional control can be maintained with critical engine inoperative (84 kts published, red line).\n\nBelow VMC, rudder authority cannot counteract asymmetric thrust.\nManufacturer determines VMC under FAA-mandated conditions.\nBe able to explain all VMC factors from the table.',
+  },
+  {
+    front: 'Manifold Pressure',
+    back: 'Vacuum created by the engine on the intake stroke — a measure of power being produced.\n\nIn a climb: decreases approximately 1 inch per 1000 feet because air density decreases and the engine cannot produce as much vacuum (power) at altitude.',
+  },
+  {
+    front: 'Flaps, Brakes, Pitot-Static',
+    back: 'Flaps: electric 3-position (up/approach/down). Red=up, green=down.\nBrakes: hydraulic on main struts, reservoir in nose. Pilot pedals only.\nPitot-static: 2 pitot tubes (nose), 2 static ports (empennage). Pitot heat on panel.',
+  },
+  {
+    front: 'Avionics',
+    back: 'Navigation: Garmin GTN 650Xi\nAutopilot: STEC\nCommunications: Com 1 = GTN 650Xi\nEmergency static port: red placard, pilot lower left',
+  },
 ];
 
 const pastRecallQuestions = [
   {
     prompt: 'What does the "P" in PAST stand for?',
     answer: 'P-Factor',
-    explanation: 'P = P-Factor — asymmetric thrust from the descending vs ascending propeller blade.',
+    explanation: 'P = P-Factor. The descending blade produces more thrust than the ascending blade. If the left engine fails, P-factor from the right engine is farther from the longitudinal axis, creating greater yaw. Primary effect: YAW toward the dead engine.',
   },
   {
     prompt: 'What does the "A" in PAST stand for?',
@@ -767,7 +879,7 @@ const vmcRecallQuestions = [
   {
     prompt: 'Forward CG effect on VMC:',
     answer: 'Lowers VMC, increases control',
-    explanation: 'Longer arm between CG and rudder = more leverage, less rudder needed. But decreases climb performance.',
+    explanation: 'Forward CG lowers VMC (good for control). More forward CG creates a longer arm between CG and rudder, giving the rudder more leverage — less rudder needed to counter asymmetric turning. However, forward CG requires more tail-down force, decreasing lift and climb performance.',
   },
   {
     prompt: 'Forward CG effect on climb performance:',

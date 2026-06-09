@@ -1,5 +1,6 @@
 const activities = [
-  { id: 'flashcards', name: 'Flash Cards', icon: '🃏', desc: 'Flip cards to memorize terms and definitions' },
+  { id: 'study', name: 'Study Guide', icon: '📖', desc: 'Complete breakdown of all material — reference tables, PDFs, and full explanations' },
+  { id: 'flashcards', name: 'Flash Cards', icon: '🃏', desc: 'Flip cards for full, thorough definitions you can explain on a checkride' },
   { id: 'quiz', name: 'Quick Quiz', icon: '❓', desc: '10 random multiple-choice questions with feedback' },
   { id: 'exam', name: 'Written Exam', icon: '📝', desc: 'Full exam — all questions, 4 choices each, 80% to pass' },
   { id: 'memory', name: 'Memory Match', icon: '🧠', desc: 'Match terms to definitions in a card-flip game' },

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import AnswerReview from './AnswerReview';
 
 function buildChoices(answer, allAnswers) {
   const distractors = allAnswers
@@ -12,6 +13,7 @@ export default function RecallChallenge({ questions, title, onBack }) {
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
+  const [answers, setAnswers] = useState([]);
 
   const shuffled = useMemo(() => [...questions].sort(() => Math.random() - 0.5), [questions]);
   const allAnswers = useMemo(() => [...new Set(questions.map((q) => q.answer))], [questions]);
@@ -25,7 +27,18 @@ export default function RecallChallenge({ questions, title, onBack }) {
   const pick = (choice) => {
     if (selected) return;
     setSelected(choice);
-    if (choice === current.answer) setScore((s) => s + 1);
+    const correct = choice === current.answer;
+    if (correct) setScore((s) => s + 1);
+    setAnswers((a) => [
+      ...a,
+      {
+        prompt: current.prompt,
+        correct,
+        pickedText: choice,
+        correctText: current.answer,
+        explanation: current.explanation,
+      },
+    ]);
   };
 
   const next = () => {
@@ -38,6 +51,8 @@ export default function RecallChallenge({ questions, title, onBack }) {
 
   if (done && round > 0) {
     const pct = Math.round((score / shuffled.length) * 100);
+    const wrongCount = answers.filter((a) => !a.correct).length;
+
     return (
       <div className="activity">
         <div className="activity-header">
@@ -49,6 +64,13 @@ export default function RecallChallenge({ questions, title, onBack }) {
           <p>{score} of {shuffled.length} recalled correctly</p>
           <span className="results-badge">{pct >= 80 ? '✓ Solid recall' : 'Keep practicing'}</span>
         </div>
+
+        {wrongCount > 0 ? (
+          <AnswerReview items={answers} />
+        ) : (
+          <p className="review-all-correct">Perfect recall — every answer correct.</p>
+        )}
+
         <button className="btn-primary" onClick={onBack}>Done</button>
       </div>
     );
@@ -88,8 +110,18 @@ export default function RecallChallenge({ questions, title, onBack }) {
       {selected && (
         <div className="feedback">
           <p className={selected === current.answer ? 'feedback-correct' : 'feedback-wrong'}>
-            {selected === current.answer ? '✓ Correct!' : `✗ Correct answer: ${current.answer}`}
+            {selected === current.answer ? '✓ Correct!' : '✗ Incorrect'}
           </p>
+          {selected !== current.answer && (
+            <div className="feedback-answers">
+              <p className="review-answer review-answer-wrong">
+                <span className="review-label">Your answer:</span> {selected}
+              </p>
+              <p className="review-answer review-answer-correct">
+                <span className="review-label">Correct answer:</span> {current.answer}
+              </p>
+            </div>
+          )}
           {current.explanation && <p className="feedback-exp">{current.explanation}</p>}
           <button className="btn-primary" onClick={onLastQuestion ? () => setRound(shuffled.length) : next}>
             {onLastQuestion ? 'See Results' : 'Next'}

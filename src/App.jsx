@@ -5,6 +5,7 @@ import FlashCards from './components/FlashCards';
 import Quiz from './components/Quiz';
 import MemoryGame from './components/MemoryGame';
 import RecallChallenge from './components/RecallChallenge';
+import StudyGuide from './components/StudyGuide';
 import './App.css';
 
 export default function App() {
@@ -40,6 +41,8 @@ export default function App() {
   if (view === 'activity' && section && content) {
     const back = backToSection;
     switch (activity) {
+      case 'study':
+        return <StudyGuide sectionId={sectionId} onBack={back} />;
       case 'flashcards':
         return <FlashCards cards={content.flashcards} onBack={back} />;
       case 'quiz':

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import AnswerReview from './AnswerReview';
 
 function shuffle(arr) {
   const a = [...arr];
@@ -29,7 +30,17 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
     setSelected(choiceIdx);
     const correct = choiceIdx === q.correct;
     if (correct) setScore((s) => s + 1);
-    setAnswers((a) => [...a, { question: q.question, correct, picked: choiceIdx, explanation: q.explanation }]);
+    setAnswers((a) => [
+      ...a,
+      {
+        question: q.question,
+        correct,
+        picked: choiceIdx,
+        pickedText: q.choices[choiceIdx],
+        correctText: q.choices[q.correct],
+        explanation: q.explanation,
+      },
+    ]);
   };
 
   const next = () => {
@@ -53,8 +64,8 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
           <h3>{examMode ? 'Written Exam' : 'Quick Quiz'}</h3>
           <p>
             {examMode
-              ? `All ${questions.length} questions. 4 choices each. Pass with 80% or higher.`
-              : `${Math.min(10, questions.length)} random questions. Get instant feedback.`}
+              ? `All ${questions.length} questions. 4 choices each. Pass with 80% or higher. Wrong answers reviewed in detail at the end.`
+              : `${Math.min(10, questions.length)} random questions. Wrong answers shown in red; correct answers in green at the end.`}
           </p>
           <button className="btn-primary btn-lg" onClick={() => setStarted(true)}>Start</button>
         </div>
@@ -65,6 +76,8 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
   if (finished) {
     const pct = Math.round((score / quizQuestions.length) * 100);
     const passed = pct >= 80;
+    const wrongCount = answers.filter((a) => !a.correct).length;
+
     return (
       <div className="activity">
         <div className="activity-header">
@@ -76,16 +89,17 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
           <p>{score} of {quizQuestions.length} correct</p>
           <span className="results-badge">{passed ? '✓ Passed' : 'Keep Studying'}</span>
         </div>
-        {examMode && (
-          <div className="review-list">
-            {answers.map((a, i) => (
-              <div key={i} className={`review-item ${a.correct ? 'correct' : 'wrong'}`}>
-                <p className="review-q">{a.question}</p>
-                {!a.correct && <p className="review-exp">{a.explanation}</p>}
-              </div>
-            ))}
-          </div>
+
+        {wrongCount > 0 ? (
+          <AnswerReview items={answers} />
+        ) : (
+          <p className="review-all-correct">Perfect score — no incorrect answers to review.</p>
         )}
+
+        {examMode && wrongCount > 0 && (
+          <p className="review-hint">Study the explanations above so you can thoroughly explain each topic on your checkride.</p>
+        )}
+
         <button className="btn-primary" onClick={onBack}>Done</button>
       </div>
     );
@@ -126,6 +140,16 @@ export default function Quiz({ questions, title, onBack, examMode = false }) {
           <p className={selected === q.correct ? 'feedback-correct' : 'feedback-wrong'}>
             {selected === q.correct ? '✓ Correct!' : '✗ Incorrect'}
           </p>
+          {selected !== q.correct && (
+            <div className="feedback-answers">
+              <p className="review-answer review-answer-wrong">
+                <span className="review-label">Your answer:</span> {q.choices[selected]}
+              </p>
+              <p className="review-answer review-answer-correct">
+                <span className="review-label">Correct answer:</span> {q.choices[q.correct]}
+              </p>
+            </div>
+          )}
           <p className="feedback-exp">{q.explanation}</p>
           <button className="btn-primary" onClick={next}>
             {index + 1 >= quizQuestions.length ? 'See Results' : 'Next Question'}
